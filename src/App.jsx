@@ -1,7 +1,8 @@
 import React from "react";
+import SingUp from "./pages/sing up/SingUp";
 
 const App = () => {
-  return <div className="text-red-700">App</div>;
+  return <SingUp />;
 };
 
 export default App;

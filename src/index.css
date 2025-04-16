@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+.input-style {
+  @apply border border-gray-300 px-4 py-2 rounded-lg w-full mt-2;
+}
+
+.input-phone input:focus {
+  outline: none;
+}
+
+.checkbox-style {
+  @apply w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500;
+}
