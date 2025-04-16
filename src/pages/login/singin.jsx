@@ -1,8 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import AuthSideBar from "../../components/authSideBar";
+import axios from "axios";
+import { FaRegEyeSlash } from "react-icons/fa";
+import { IoEyeOutline } from "react-icons/io5";
 
 function SignIn() {
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -17,6 +21,26 @@ function SignIn() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        "http://localhost:7000/api/v1/signin",
+        formData
+      );
+
+      if (response.status === 201 || response.status === 200) {
+        alert("Signin successful!");
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error("Signup error:", error);
+      if (error.response?.data?.message) {
+        alert(error.response.data.message);
+      } else {
+        alert("An error occurred. Please try again.");
+      }
+    }
   };
 
   return (
@@ -44,26 +68,49 @@ function SignIn() {
             id="email"
             value={formData.email}
             onChange={handleChange}
-            placeholder="example@mail.com"
+            placeholder="enter your email address"
             className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400"
+            required
           />
         </div>
 
         <div className="mb-4">
-          <label
-            htmlFor="password"
-            className="block font-medium text-gray-700 mb-1"
-          >
-            Password
-          </label>
+          <div className="flex justify-between items-center mb-1">
+            <label
+              htmlFor="password"
+              className="block font-medium text-gray-700 mb-1"
+            >
+              Password
+            </label>
+            <div
+              className="flex items-center space-x-3 cursor-pointer"
+              onClick={() => setShowPassword((prev) => !prev)}
+            >
+              {showPassword ? (
+                <>
+                  <i>
+                    <FaRegEyeSlash />
+                  </i>
+                  <p>Hide</p>
+                </>
+              ) : (
+                <>
+                  <i>
+                    <IoEyeOutline />
+                  </i>
+                  <p>Show</p>
+                </>
+              )}
+            </div>
+          </div>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             name="password"
             id="password"
             value={formData.password}
             onChange={handleChange}
-            placeholder="••••••••"
             className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400"
+            required
           />
           <p className="text-sm text-gray-500 mt-1">
             Use 8 or more characters with a mix of letters, numbers & symbols
