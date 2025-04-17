@@ -42,7 +42,9 @@ function SignUp() {
     }
 
     try {
-      const response = await axios.post(`${baseUrl}/api/v1/signup`, formData);
+      const response = await axios.post(`${baseUrl}/api/v1/signup`, formData, {
+        withCredentials: true,
+      });
 
       if (response.status === 201 || response.status === 200) {
         navigate("/");
