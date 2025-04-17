@@ -25,7 +25,10 @@ function SignIn() {
     try {
       const response = await axios.post(
         "http://localhost:7000/api/v1/signin",
-        formData
+        formData,
+        {
+          withCredentials: true,
+        }
       );
 
       if (response.status === 201 || response.status === 200) {
@@ -56,10 +59,7 @@ function SignIn() {
         <h2 className="text-3xl font-semibold mb-6">Sign in</h2>
 
         <div className="mb-4">
-          <label
-            htmlFor="email"
-            className="block font-medium text-gray-700 mb-1"
-          >
+          <label htmlFor="email" className="label-style">
             Email Address
           </label>
           <input
@@ -69,17 +69,14 @@ function SignIn() {
             value={formData.email}
             onChange={handleChange}
             placeholder="enter your email address"
-            className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400"
+            className="input-style"
             required
           />
         </div>
 
         <div className="mb-4">
           <div className="flex justify-between items-center mb-1">
-            <label
-              htmlFor="password"
-              className="block font-medium text-gray-700 mb-1"
-            >
+            <label htmlFor="password" className="label-style">
               Password
             </label>
             <div
@@ -109,7 +106,7 @@ function SignIn() {
             id="password"
             value={formData.password}
             onChange={handleChange}
-            className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400"
+            className="input-style"
             required
           />
           <p className="text-sm text-gray-500 mt-1">
@@ -126,7 +123,7 @@ function SignIn() {
 
         <p className="text-sm text-center text-gray-700 mt-4">
           Don&apos;t have an account?
-          <Link to="/" className="text-blue-600 underline ml-1">
+          <Link to="/singup" className="underline ml-1">
             Sign up
           </Link>
         </p>
