@@ -41,7 +41,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-4 flex flex-col items-center">
+    <div className="min-h-screen bg-[#1f1f1f] p-4 flex flex-col items-center">
       <div className="bg-white shadow-lg rounded-lg w-full max-w-md p-6 mt-10">
         <h2 className="text-2xl font-semibold text-center mb-4 text-indigo-600">
           CRUD Operation

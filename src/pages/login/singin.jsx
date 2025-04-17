@@ -49,7 +49,9 @@ function SignIn() {
   return (
     <div className="bg-[#1f1f1f] flex flex-col lg:flex-row justify-between items-center min-h-screen w-full xl:px-40 md:px-10 px-5 py-10">
       {/* Left Side */}
-      <AuthSideBar />
+      <div className="hidden lg:block">
+        <AuthSideBar />
+      </div>
 
       {/* Right Side - Sign In Form */}
       <form

@@ -63,10 +63,13 @@ function SignUp() {
   };
 
   return (
-    <div className="bg-[#1f1f1f] flex justify-between items-center h-screen w-full xl:px-40 md:px-10 px-5">
+    <div className="bg-[#1f1f1f] flex justify-center lg:justify-between items-center min-h-screen h-full w-full xl:px-40 md:px-10 px-2">
       {/* Left Side */}
-      <AuthSideBar />
-      <form className="max-w-xl p-6 bg-white shadow-md rounded-xl">
+      <div className="hidden lg:block">
+        <AuthSideBar />
+      </div>
+
+      <form className="max-w-xl p-6 bg-white shadow-md rounded-xl my-5 md:my-10 lg:my-0">
         <h2 className="text-3xl font-semibold mb-6">Sign up now</h2>
         <div className="grid md:grid-cols-2 gap-4">
           <div>
@@ -204,7 +207,7 @@ function SignUp() {
             </label>
           </div>
         </div>
-        <div className="flex space-x-10 items-center mt-6">
+        <div className="flex space-x-10 items-center flex-col md:flex-row mt-6">
           <button
             onClick={handleSubmit}
             className="mt-6 bg-[#c3c3c3] text-white py-4 px-10 rounded-4xl hover:bg-[#afa8a8] transition duration-300"
