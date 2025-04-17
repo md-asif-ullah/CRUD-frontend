@@ -1,10 +1,11 @@
 import { useState } from "react";
 import PhoneDropdown from "../../components/PhoneDropDown";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import AuthSideBar from "../../components/authSideBar";
 import axios from "axios";
 import { IoEyeOutline } from "react-icons/io5";
 import { FaRegEyeSlash } from "react-icons/fa";
+import { baseUrl } from "../../components/config";
 
 function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,6 +26,8 @@ function SignUp() {
     }));
   };
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -39,12 +42,10 @@ function SignUp() {
     }
 
     try {
-      const response = await axios.post(
-        "http://localhost:7000/api/v1/signup",
-        formData
-      );
+      const response = await axios.post(`${baseUrl}/api/v1/signup`, formData);
 
       if (response.status === 201 || response.status === 200) {
+        navigate("/");
         alert("Signup successful!");
       } else {
         alert("Something went wrong. Please try again.");

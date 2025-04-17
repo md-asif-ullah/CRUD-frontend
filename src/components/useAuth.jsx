@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
+import { baseUrl } from "./config";
 
 export const useAuth = () => {
   const [user, setUser] = useState(null);
@@ -7,7 +8,7 @@ export const useAuth = () => {
 
   const fetchUserData = useCallback(async () => {
     try {
-      const res = await axios.get("http://localhost:7000/api/v1/profile", {
+      const res = await axios.get(`${baseUrl}/api/v1/profile`, {
         withCredentials: true,
       });
       setUser(res.data.payload);

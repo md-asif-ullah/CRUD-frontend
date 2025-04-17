@@ -10,7 +10,7 @@ function ProtectedRoutes({ children }) {
   }
 
   if (!user) {
-    return <Navigate to="/signin" state={{ from: location }} replace />;
+    return <Navigate to="/singin" state={{ from: location }} replace />;
   }
 
   return children;
